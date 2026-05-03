@@ -23,8 +23,9 @@
 </header>
 
 <section class="hero">
+  <!-- Hero principal com CTA para direcionar o usuario ate a oferta -->
   <div class="hero-badge">⚡ Acesso imediato após a compra</div>
-  <h1>Fale inglês com<br><span class="highlight">confiança em 90 dias</span></h1>
+  <h1>Fale inglês com<br><span class="highlight"> confiança em 90 dias mesmo começando do zero</span></h1>
   <p>Método prático, sem enrolação. Comece do zero e chegue à fluência com aulas dinâmicas e suporte completo.</p>
   <div class="hero-actions">
     <!-- LINK DE AFILIADO: substitua o # pelo seu link -->
@@ -78,6 +79,24 @@
       <h3>Suporte Completo</h3>
       <p>Comunidade exclusiva e suporte direto para tirar todas as dúvidas</p>
     </div>
+  </div>
+</section>
+
+<!-- Secao de prova social: os cards sao gerados dinamicamente via script.js -->
+<section class="depoimentos">
+  <h2>O que os alunos dizem</h2>
+  <p class="secao-subtitulo">Resultados reais de pessoas que começaram do zero</p>
+
+  <!-- Carrossel com 3 cards por vez para manter prova social forte sem poluir a tela -->
+  <div class="depo-carousel" aria-label="Carrossel de depoimentos">
+    <button class="depo-nav depo-prev" id="depo-prev" aria-label="Ver depoimentos anteriores">&#10094;</button>
+    <div class="depo-track">
+      <!-- Container alvo onde o JavaScript injeta os 3 depoimentos ativos -->
+      <div class="depo-grid" id="depo-grid" aria-live="polite"></div>
+      <!-- Bolinhas (dots): indicam qual grupo de 3 depoimentos esta ativo -->
+      <div class="depo-dots" id="depo-dots" aria-label="Paginacao dos depoimentos"></div>
+    </div>
+    <button class="depo-nav depo-next" id="depo-next" aria-label="Ver próximos depoimentos">&#10095;</button>
   </div>
 </section>
 

@@ -266,6 +266,180 @@ nav a:hover {
     line-height: 1.6;
 }
 
+/* ── Depoimentos ── */
+.depoimentos {
+    padding: 80px 24px;
+    text-align: center;
+    background: linear-gradient(to bottom, rgba(15, 23, 42, 0.5), transparent);
+}
+
+.depoimentos h2 {
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+}
+
+/* Wrapper do carrossel: posiciona setas laterais sem quebrar o grid dos cards. */
+.depo-carousel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 14px;
+    max-width: 1120px;
+    margin: 0 auto;
+}
+
+.depo-track {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Setas com destaque visual para reforcar que os depoimentos sao navegaveis. */
+.depo-nav {
+    width: 44px;
+    height: 44px;
+    align-self: center;
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.9);
+    color: #fff;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.depo-nav:hover {
+    transform: translateY(-2px);
+    background: rgba(34, 197, 94, 0.2);
+    border-color: rgba(34, 197, 94, 0.7);
+}
+
+.depo-grid {
+    display: grid;
+    /* Sempre 3 cards no desktop para corresponder a logica do carrossel em grupos. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 100%;
+    margin: 0;
+    text-align: left;
+}
+
+/* Classes usadas pelo JS para dar transicao suave entre grupos de 3 cards. */
+.depo-grid--out-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+.depo-grid--out-right {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: transform 0.22s ease, opacity 0.22s ease;
+}
+
+.depo-grid--in-right {
+    animation: depoInRight 0.26s ease;
+}
+
+.depo-grid--in-left {
+    animation: depoInLeft 0.26s ease;
+}
+
+@keyframes depoInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes depoInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.depo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.depo-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(34, 197, 94, 0.3);
+}
+
+.depo-stars {
+    color: #facc15;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+}
+
+.depo-texto {
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    flex: 1;
+}
+
+.depo-autor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.depo-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: #000;
+    font-weight: 800;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.depo-autor strong {
+    display: block;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.depo-autor span {
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.depo-erro {
+    /* Estado de erro ocupa toda a largura da grade para ficar centralizado. */
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
 /* ── Oferta ── */
 .oferta {
     padding: 80px 24px;
@@ -378,6 +552,20 @@ footer {
         grid-template-columns: 1fr;
     }
 
+    .depo-carousel {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .depo-grid {
+        /* No mobile vira 1 card por tela para leitura confortavel. */
+        grid-template-columns: 1fr;
+    }
+
+    .depo-nav {
+        justify-self: center;
+    }
+
     .oferta-inner {
         padding: 40px 20px;
     }
@@ -397,4 +585,32 @@ footer {
         width: 100%;
         text-align: center;
     }
+}
+
+/* Dots: feedback visual da pagina atual e atalho para navegacao rapida. */
+.depo-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.depo-dot {
+    width: 10px;
+    height: 10px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.45);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.depo-dot:hover {
+    transform: scale(1.1);
+    background: rgba(148, 163, 184, 0.75);
+}
+
+.depo-dot.is-active {
+    background: var(--green);
+    transform: scale(1.2);
 }

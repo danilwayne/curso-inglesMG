@@ -1,0 +1,38 @@
+[
+    {
+        "stars": 5,
+        "texto": "Em 2 meses já consigo conversar no trabalho com clientes estrangeiros. Não acreditei que seria tão rápido!",
+        "nome": "João Silva",
+        "profissao": "Analista de TI"
+    },
+    {
+        "stars": 5,
+        "texto": "Tentei vários cursos antes e nunca evoluí. Aqui as aulas são práticas de verdade. Recomendo demais!",
+        "nome": "Mariana Costa",
+        "profissao": "Estudante de intercâmbio"
+    },
+    {
+        "stars": 5,
+        "texto": "Consegui meu emprego dos sonhos graças ao inglês que aprendi aqui. O suporte é incrível, sempre me ajudaram.",
+        "nome": "Rafael Mendes",
+        "profissao": "Designer Freelancer"
+    },
+    {
+        "stars": 5,
+        "texto": "Antes eu travava para falar. Hoje participo de reunioes com clientes de fora sem medo.",
+        "nome": "Carla Nogueira",
+        "profissao": "Gerente Comercial"
+    },
+    {
+        "stars": 5,
+        "texto": "Em poucas semanas ja estava entendendo filmes e series sem legenda. O metodo e direto ao ponto.",
+        "nome": "Diego Martins",
+        "profissao": "Engenheiro Civil"
+    },
+    {
+        "stars": 5,
+        "texto": "Usei o curso para me preparar para entrevista internacional e fui aprovado. Melhor investimento que fiz.",
+        "nome": "Fernanda Lima",
+        "profissao": "Product Designer"
+    }
+]
