@@ -4,34 +4,74 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Curso de Inglês</title>
+
+  <!--
+    FONTE INTER (Google Fonts)
+    Alteracao: adicionamos a fonte Inter no lugar da Arial padrao.
+    Por que: Inter e mais moderna, legivel e profissional para landing pages.
+    preconnect abre a conexao com o servidor do Google com antecedencia,
+    acelerando o carregamento da fonte.
+  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<!--
+  HEADER FIXO (sticky)
+  Alteracao: o header agora fica preso no topo enquanto o usuario rola a pagina.
+  Por que: mante o logo e o botao de compra sempre visiveis, aumentando conversao.
+  O efeito de glassmorphism (fundo semitransparente + blur) foi feito no CSS.
+-->
 <header>
   <div class="header-inner">
     <div class="logo">🇺🇸 Inglês Fluente</div>
     <nav>
+      <!-- Link de ancora: leva o usuario para a secao de beneficios sem recarregar a pagina -->
       <a href="#beneficios">Benefícios</a>
+      <!-- Botao de CTA no nav: classe nav-cta aplica fundo verde para se destacar -->
       <a href="#oferta" class="nav-cta">Comprar</a>
     </nav>
   </div>
 </header>
 
+<!--
+  SECAO HERO (principal)
+  Alteracao: substituimos o h1 simples por uma estrutura com badge, titulo destacado,
+  subtitulo, botao de CTA e bloco de estatisticas.
+  Por que: o hero e a primeira coisa que o visitante ve. Quanto mais impactante, melhor.
+-->
 <section class="hero">
   <!-- Hero principal com CTA para direcionar o usuario ate a oferta -->
+
+  <!-- Badge: pequena pichula de destaque acima do titulo para chamar atencao -->  
   <div class="hero-badge">⚡ Acesso imediato após a compra</div>
+
+  <!--
+    Titulo principal com span.highlight
+    Alteracao: parte do texto ganhou a classe highlight para ficar em verde.
+    Por que: cor diferente no titulo guia o olhar para a proposta principal.
+  -->
   <h1>Fale inglês com<br><span class="highlight"> confiança em 90 dias mesmo começando do zero</span></h1>
+
   <p>Método prático, sem enrolação. Comece do zero e chegue à fluência com aulas dinâmicas e suporte completo.</p>
+
   <div class="hero-actions">
     <!-- LINK DE AFILIADO: substitua o # pelo seu link -->
-  <a class="botao" href="#oferta">Quero começar agora →</a>
+    <!-- href="#oferta" faz scroll suave ate a secao de compra (definido no CSS com scroll-behavior: smooth) -->
+    <a class="botao" href="#oferta">Quero começar agora →</a>
     <span class="hero-sub">Garantia de 7 dias</span>
   </div>
+
+  <!--
+    Estatisticas (prova social rapida)
+    Alteracao: bloco de numeros adicionado abaixo do CTA.
+    Por que: numeros criam credibilidade instantanea e reduzem objecoes.
+  -->
   <div class="hero-stats">
     <div class="stat"><strong>+5.000</strong><span>alunos</span></div>
     <div class="stat"><strong>4.9★</strong><span>avaliação</span></div>
@@ -39,12 +79,19 @@
   </div>
 </section>
 
+<!--
+  SECAO BENEFICIOS
+  Alteracao: saimos de 3 cards para 6 cards com icones emoji.
+  Por que: mais beneficios = menos objecoes. Icones facilitam a leitura rapida.
+  O grid usa auto-fit para se adaptar automaticamente ao tamanho da tela.
+-->
 <section class="beneficios" id="beneficios">
   <h2>O que você vai aprender</h2>
   <p class="secao-subtitulo">Tudo o que você precisa para atingir a fluência de forma rápida e definitiva</p>
 
   <div class="cards">
     <div class="card">
+      <!-- card-icon: emoji como icone visual rapido sem precisar de biblioteca externa -->
       <div class="card-icon">💬</div>
       <h3>Conversação</h3>
       <p>Fale inglês com segurança no dia a dia, em viagens e no trabalho</p>
@@ -82,6 +129,13 @@
   </div>
 </section>
 
+<!--
+  SECAO DEPOIMENTOS (prova social)
+  Alteracao: saimos de cards fixos no HTML para um carrossel dinamico.
+  Os depoimentos agora ficam em reviews.json e sao carregados pelo script.js.
+  Por que: facilita adicionar novos depoimentos sem tocar no HTML.
+  O carrossel mostra 3 por vez com rotacao automatica e setas de navegacao.
+-->
 <!-- Secao de prova social: os cards sao gerados dinamicamente via script.js -->
 <section class="depoimentos">
   <h2>O que os alunos dizem</h2>
@@ -89,28 +143,70 @@
 
   <!-- Carrossel com 3 cards por vez para manter prova social forte sem poluir a tela -->
   <div class="depo-carousel" aria-label="Carrossel de depoimentos">
+
+    <!--
+      Seta esquerda (prev)
+      Alteracao: botao adicionado para navegacao manual do carrossel.
+      aria-label garante acessibilidade para leitores de tela.
+      O simbolo &#10094; e o caractere HTML para a seta <
+    -->
     <button class="depo-nav depo-prev" id="depo-prev" aria-label="Ver depoimentos anteriores">&#10094;</button>
+
     <div class="depo-track">
       <!-- Container alvo onde o JavaScript injeta os 3 depoimentos ativos -->
       <div class="depo-grid" id="depo-grid" aria-live="polite"></div>
+
+      <!--
+        Dots de paginacao
+        Alteracao: bolinhas geradas pelo JS indicando qual grupo esta ativo.
+        Cada bolinha corresponde a um grupo de 3 depoimentos e e clicavel.
+        aria-live="polite" avisa leitores de tela quando o conteudo muda.
+      -->
       <!-- Bolinhas (dots): indicam qual grupo de 3 depoimentos esta ativo -->
       <div class="depo-dots" id="depo-dots" aria-label="Paginacao dos depoimentos"></div>
     </div>
+
+    <!-- Seta direita (next): &#10095; e o caractere HTML para a seta > -->
     <button class="depo-nav depo-next" id="depo-next" aria-label="Ver próximos depoimentos">&#10095;</button>
   </div>
 </section>
 
+<!--
+  SECAO OFERTA
+  Alteracoes para aumentar urgencia e conversao:
+  1. Badge com animacao de pulso chamando atencao
+  2. Faixa vermelha de escassez (vagas limitadas)
+  3. Contador regressivo controlado pelo script.js
+  4. Texto do botao mais agressivo
+  5. Garantia com contraste aumentado
+-->
 <section class="oferta" id="oferta">
   <div class="oferta-inner">
+    <!--
+      Badge com classe oferta-badge--pulso
+      Alteracao: adicionamos a classe extra que aplica animacao CSS de brilho pulsante.
+      Por que: movimento atrai o olhar do visitante mesmo sem interagir.
+    -->
     <!-- Badge piscando para chamar atenção imediata -->
     <div class="oferta-badge oferta-badge--pulso">🔥 Oferta válida apenas hoje</div>
 
     <h2>Não perca essa chance</h2>
     <p>Acesso completo ao método + bônus exclusivos por tempo <strong>muito</strong> limitado</p>
 
+    <!--
+      Faixa de escassez
+      Alteracao: elemento novo com fundo vermelho para indicar quantidade limitada.
+      Por que: escassez e um dos gatilhos mentais mais poderosos em vendas.
+    -->
     <!-- Escassez: vagas restantes para criar senso de urgência -->
     <div class="oferta-escassez">⚠️ Restam apenas <strong>7 vagas</strong> com esse desconto</div>
 
+    <!--
+      Contador regressivo
+      Alteracao: estrutura de 3 blocos (horas, minutos, segundos) preenchida pelo JS.
+      O script.js usa sessionStorage para que o tempo nao reinicie ao rolar a pagina.
+      Para alterar a duracao, mude o valor DURACAO_SEGUNDOS em script.js.
+    -->
     <!-- Contador regressivo: o JS preenche os spans automaticamente -->
     <div class="oferta-contador">
       <div class="contador-bloco"><span id="cnt-h">00</span><small>horas</small></div>
@@ -120,6 +216,12 @@
       <div class="contador-bloco"><span id="cnt-s">00</span><small>seg</small></div>
     </div>
 
+    <!--
+      Bloco de preco
+      preco-de: valor original riscado (cria percepcao de desconto)
+      preco-por: valor atual em destaque grande
+      preco-parcelamento: opcao de parcelamento para reduzir barreira de entrada
+    -->
     <div class="preco">
       <span class="preco-de">De R$197</span>
       <span class="preco-por">R$<strong>97</strong></span>
@@ -127,17 +229,35 @@
     </div>
 
     <!-- LINK DE AFILIADO: substitua o # pelo seu link -->
+    <!--
+      Texto do botao alterado para ser mais urgente e pessoal.
+      classe destaque aplica fundo amarelo para diferenciar do botao verde padrao.
+    -->
     <a class="botao destaque" href="#">✅ Quero Garantir Minha Vaga Agora</a>
+
+    <!--
+      Linha de garantia
+      Alteracao: contraste aumentado (cor trocada de --muted para --text no CSS).
+      Por que: informacao de seguranca deve ser legivel para reduzir objecoes.
+    -->
     <p class="garantia">🔒 Compra segura · 7 dias de garantia incondicional</p>
   </div>
 </section>
 
+<!--
+  FOOTER
+  O ano e preenchido dinamicamente pelo script.js com new Date().getFullYear()
+  para nunca ficar desatualizado.
+-->
 <footer>
   <p>© <span id="ano"></span> Curso Inglês Fluente · Todos os direitos reservados</p>
 </footer>
+
+<!-- script.js carregado no final do body para nao bloquear o carregamento do HTML -->
 <script src="script.js"></script>
 
-
+</body>
+</html>
 
 </body>
 </html>

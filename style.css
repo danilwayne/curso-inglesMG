@@ -1,4 +1,10 @@
-/* ── Reset & Base ── */
+/* ── Reset & Base ──────────────────────────────────────────────────────────
+   Alteracao: zeramos margin e padding de todos os elementos.
+   Por que: cada navegador tem estilos padrao diferentes. Resetar garante
+   que a pagina fique igual em todos os browsers.
+   box-sizing: border-box faz o padding ser incluido na largura do elemento,
+   facilitando calculos de layout.
+*/
 *,
 *::before,
 *::after {
@@ -7,19 +13,41 @@
     padding: 0;
 }
 
+/*
+   VARIAVEIS CSS (:root)
+   Alteracao: criamos variaveis globais para as cores do projeto.
+   Por que: se quiser mudar o verde da marca, basta alterar --green aqui
+   e todos os elementos atualizam automaticamente. Facilita manutencao.
+*/
 :root {
     --green: #22c55e;
+    /* verde principal - botoes, destaques */
     --green-dark: #16a34a;
+    /* verde escuro - hover dos botoes */
     --yellow: #facc15;
+    /* amarelo - botao de compra e contador */
     --yellow-dark: #eab308;
+    /* amarelo escuro - hover do botao de compra */
     --bg: #020617;
+    /* fundo escuro da pagina */
     --bg-card: #0f172a;
+    /* fundo dos cards */
     --bg-card-hover: #1e293b;
+    /* fundo dos cards no hover */
     --border: #1e293b;
+    /* cor das bordas */
     --text: #e2e8f0;
+    /* texto principal */
     --muted: #94a3b8;
+    /* texto secundario/desbotado */
 }
 
+/*
+   SCROLL SUAVE
+   Alteracao: adicionamos scroll-behavior: smooth ao html.
+   Por que: quando o usuario clica em links de ancora (ex: href="#oferta"),
+   a pagina rola suavemente em vez de pular direto.
+*/
 html {
     scroll-behavior: smooth;
 }
@@ -31,13 +59,21 @@ body {
     line-height: 1.6;
 }
 
-/* ── Header ── */
+/*
+   HEADER FIXO COM GLASSMORPHISM
+   Alteracao: position: sticky faz o header grudar no topo ao rolar.
+   backdrop-filter: blur cria o efeito de vidro fosco sobre o conteudo.
+   Por que: manter o CTA de compra sempre visivel aumenta conversao.
+   z-index: 100 garante que o header fique sobre todos os outros elementos.
+*/
 header {
     position: sticky;
     top: 0;
     z-index: 100;
     background: rgba(2, 6, 23, 0.85);
+    /* fundo semitransparente */
     backdrop-filter: blur(12px);
+    /* efeito de vidro fosco */
     border-bottom: 1px solid var(--border);
     padding: 0 24px;
 }
@@ -109,6 +145,13 @@ nav a:hover {
     letter-spacing: 0.02em;
 }
 
+/*
+   HERO - TITULO COM clamp()
+   Alteracao: usamos clamp() para tamanho de fonte responsivo.
+   Por que: clamp(minimo, ideal, maximo) faz o texto crescer e encolher
+   proporcionalmente ao viewport sem precisar de media queries.
+   Exemplo: clamp(2rem, 5vw, 3.5rem) = minimo 2rem, ideal 5% da tela, maximo 3.5rem.
+*/
 .hero h1 {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 800;
@@ -174,7 +217,13 @@ nav a:hover {
     letter-spacing: 0.05em;
 }
 
-/* ── Botão principal ── */
+/*
+   BOTAO PRINCIPAL
+   Alteracao: adicionamos glow (brilho externo) com box-shadow e animacao
+   de elevacao no hover com transform: translateY(-2px).
+   Por que: botoes com feedback visual incentivam mais cliques.
+   transition declara quais propriedades animam e em quanto tempo.
+*/
 .botao {
     display: inline-block;
     padding: 16px 32px;
@@ -186,6 +235,7 @@ nav a:hover {
     font-size: 1rem;
     transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
     box-shadow: 0 0 24px rgba(34, 197, 94, 0.3);
+    /* glow verde */
 }
 
 .botao:hover {
@@ -225,6 +275,13 @@ nav a:hover {
     margin: 0 auto 48px;
 }
 
+/*
+   CARDS DE BENEFICIOS
+   Alteracao: trocamos flex por CSS Grid com auto-fit.
+   Por que: auto-fit cria automaticamente o numero de colunas que cabe
+   na tela, sem precisar de media queries separadas para cada breakpoint.
+   minmax(260px, 1fr) = cada card tem no minimo 260px e no maximo 1 fracao.
+*/
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -477,6 +534,12 @@ nav a:hover {
     margin-bottom: 20px;
 }
 
+/*
+   OFERTA - BADGE COM ANIMACAO DE PULSO
+   Alteracao: adicionamos a classe .oferta-badge--pulso com @keyframes.
+   Por que: animacao de pulso (anel expandindo) chama atencao sem ser agressiva.
+   A animacao e infinita (infinite) para continuar enquanto o visitante estiver na pagina.
+*/
 /* Badge com animacao de pulso para atrair o olho do visitante */
 .oferta-badge--pulso {
     animation: pulso 1.8s ease-in-out infinite;
@@ -487,10 +550,12 @@ nav a:hover {
     0%,
     100% {
         box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4);
+        /* anel invisivel */
     }
 
     50% {
         box-shadow: 0 0 0 8px rgba(250, 204, 21, 0);
+        /* anel expandido e transparente */
     }
 }
 
@@ -592,11 +657,18 @@ nav a:hover {
     color: var(--muted);
 }
 
+/*
+   GARANTIA - CONTRASTE AUMENTADO
+   Alteracao: cor trocada de --muted (#94a3b8) para --text (#e2e8f0).
+   Por que: a linha de seguranca e um argumento de venda importante.
+   Deixar ela desbotada fazia o visitante ignorar. Com mais contraste ela e lida.
+   font-weight: 500 tambem deixa o texto um pouco mais encorpado.
+*/
 .garantia {
     margin-top: 16px;
     font-size: 0.85rem;
     color: var(--text);
-    /* aumentado contraste: era --muted (#94a3b8), agora --text (#e2e8f0) */
+    /* era --muted (#94a3b8), agora --text (#e2e8f0) = mais contraste */
     font-weight: 500;
 }
 
@@ -609,7 +681,12 @@ footer {
     font-size: 0.85rem;
 }
 
-/* ── Responsividade ── */
+/*
+   RESPONSIVIDADE - MOBILE (ate 768px)
+   Alteracao: ajustamos padding, grid e nav para telas menores.
+   Por que: sem isso o layout quebraria em celulares.
+   nav a:not(.nav-cta) esconde os links de ancora mas mantem o botao de compra.
+*/
 @media (max-width: 768px) {
     .hero {
         padding: 60px 20px 56px;

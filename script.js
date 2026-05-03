@@ -1,3 +1,5 @@
+// Preenche o ano no rodape dinamicamente para nunca ficar desatualizado.
+// Alteracao: em vez de escrever o ano fixo no HTML, o JS pega o ano atual.
 document.getElementById('ano').textContent = new Date().getFullYear();
 
 // ── Contador regressivo ──────────────────────────────────────────────────────
@@ -46,19 +48,28 @@ document.getElementById('ano').textContent = new Date().getFullYear();
     atualizar();
 }());
 
-// Configuracoes do carrossel: 3 visiveis, rotacao automatica e loop infinito.
-var TOTAL_VISIVEIS = 3;
-var INTERVALO_AUTOPLAY_MS = 5000;
+// Configuracoes do carrossel.
+// Alteracao: valores centralizados em constantes para facilitar ajuste futuro.
+// Para mostrar mais ou menos cards, basta mudar TOTAL_VISIVEIS.
+// Para acelerar ou desacelerar o autoplay, mude INTERVALO_AUTOPLAY_MS.
+var TOTAL_VISIVEIS = 3;          // quantos depoimentos aparecem ao mesmo tempo
+var INTERVALO_AUTOPLAY_MS = 5000; // tempo em milissegundos entre cada troca automatica
 
+// Variaveis de estado do carrossel.
+// depoimentos: array com todos os reviews carregados do JSON.
+// indiceInicial: posicao do primeiro card visivel no momento.
+// animando: trava para evitar cliques duplos durante a transicao.
+// autoplayId: guarda o ID do setInterval para poder cancelar com clearInterval.
 var depoimentos = [];
 var indiceInicial = 0;
 var animando = false;
 var autoplayId = null;
 
-var grid = document.getElementById('depo-grid');
-var dots = document.getElementById('depo-dots');
-var botaoPrev = document.getElementById('depo-prev');
-var botaoNext = document.getElementById('depo-next');
+// Referencias aos elementos do DOM que o JS vai manipular.
+var grid = document.getElementById('depo-grid');    // onde os cards sao inseridos
+var dots = document.getElementById('depo-dots');    // container das bolinhas
+var botaoPrev = document.getElementById('depo-prev'); // seta esquerda
+var botaoNext = document.getElementById('depo-next'); // seta direita
 
 // Funcao utilitaria para criar elementos HTML de forma padronizada.
 function criarElemento(tag, className, texto) {
