@@ -1,5 +1,51 @@
 document.getElementById('ano').textContent = new Date().getFullYear();
 
+// ── Contador regressivo ──────────────────────────────────────────────────────
+// Armazena o prazo no sessionStorage para que o tempo nao reinicie
+// a cada clique do usuario enquanto ele estiver na mesma aba.
+// sessionStorage e apagado quando o usuario fecha a aba/navegador.
+(function iniciarContador() {
+    var DURACAO_SEGUNDOS = 15 * 60; // 15 minutos de urgencia
+    var CHAVE_STORAGE = 'oferta_expira_em';
+
+    var agora = Math.floor(Date.now() / 1000);
+    var expiraEm = Number(sessionStorage.getItem(CHAVE_STORAGE));
+
+    // Se nao existe ou ja expirou, define novo prazo.
+    if (!expiraEm || expiraEm <= agora) {
+        expiraEm = agora + DURACAO_SEGUNDOS;
+        sessionStorage.setItem(CHAVE_STORAGE, expiraEm);
+    }
+
+    var elH = document.getElementById('cnt-h');
+    var elM = document.getElementById('cnt-m');
+    var elS = document.getElementById('cnt-s');
+
+    function pad(n) {
+        return String(n).padStart(2, '0');
+    }
+
+    function atualizar() {
+        var agora = Math.floor(Date.now() / 1000);
+        var restante = Math.max(0, expiraEm - agora);
+
+        var h = Math.floor(restante / 3600);
+        var m = Math.floor((restante % 3600) / 60);
+        var s = restante % 60;
+
+        if (elH) elH.textContent = pad(h);
+        if (elM) elM.textContent = pad(m);
+        if (elS) elS.textContent = pad(s);
+
+        // Quando chega a zero para de decrementar (nao reinicia).
+        if (restante > 0) {
+            setTimeout(atualizar, 1000);
+        }
+    }
+
+    atualizar();
+}());
+
 // Configuracoes do carrossel: 3 visiveis, rotacao automatica e loop infinito.
 var TOTAL_VISIVEIS = 3;
 var INTERVALO_AUTOPLAY_MS = 5000;

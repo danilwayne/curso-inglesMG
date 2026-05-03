@@ -102,17 +102,33 @@
 
 <section class="oferta" id="oferta">
   <div class="oferta-inner">
-    <div class="oferta-badge">🔥 Oferta por tempo limitado</div>
-    <h2>Comece hoje mesmo</h2>
-    <p>Acesso completo ao método + bônus exclusivos</p>
+    <!-- Badge piscando para chamar atenção imediata -->
+    <div class="oferta-badge oferta-badge--pulso">🔥 Oferta válida apenas hoje</div>
+
+    <h2>Não perca essa chance</h2>
+    <p>Acesso completo ao método + bônus exclusivos por tempo <strong>muito</strong> limitado</p>
+
+    <!-- Escassez: vagas restantes para criar senso de urgência -->
+    <div class="oferta-escassez">⚠️ Restam apenas <strong>7 vagas</strong> com esse desconto</div>
+
+    <!-- Contador regressivo: o JS preenche os spans automaticamente -->
+    <div class="oferta-contador">
+      <div class="contador-bloco"><span id="cnt-h">00</span><small>horas</small></div>
+      <div class="contador-sep">:</div>
+      <div class="contador-bloco"><span id="cnt-m">00</span><small>min</small></div>
+      <div class="contador-sep">:</div>
+      <div class="contador-bloco"><span id="cnt-s">00</span><small>seg</small></div>
+    </div>
+
     <div class="preco">
       <span class="preco-de">De R$197</span>
       <span class="preco-por">R$<strong>97</strong></span>
       <span class="preco-parcelamento">ou 12x de R$9,70</span>
     </div>
+
     <!-- LINK DE AFILIADO: substitua o # pelo seu link -->
-    <a class="botao destaque" href="#">✅ Comprar Agora com Desconto</a>
-    <p class="garantia">🔒 Compra segura · 7 dias de garantia</p>
+    <a class="botao destaque" href="#">✅ Quero Garantir Minha Vaga Agora</a>
+    <p class="garantia">🔒 Compra segura · 7 dias de garantia incondicional</p>
   </div>
 </section>
 

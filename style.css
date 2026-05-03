@@ -477,6 +477,79 @@ nav a:hover {
     margin-bottom: 20px;
 }
 
+/* Badge com animacao de pulso para atrair o olho do visitante */
+.oferta-badge--pulso {
+    animation: pulso 1.8s ease-in-out infinite;
+}
+
+@keyframes pulso {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(250, 204, 21, 0);
+    }
+}
+
+/* Barra de escassez: vaga limitada visivel e de alto contraste */
+.oferta-escassez {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Contador regressivo: destaque visual para reforcar urgencia */
+.oferta-contador {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.contador-bloco {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(2, 6, 23, 0.7);
+    border: 1px solid rgba(250, 204, 21, 0.25);
+    border-radius: 8px;
+    padding: 10px 16px;
+    min-width: 64px;
+}
+
+.contador-bloco span {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--yellow);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.contador-bloco small {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-top: 4px;
+}
+
+.contador-sep {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--yellow);
+    margin-bottom: 16px;
+}
+
 .oferta h2 {
     font-size: clamp(1.6rem, 3vw, 2.2rem);
     font-weight: 800;
@@ -521,8 +594,10 @@ nav a:hover {
 
 .garantia {
     margin-top: 16px;
-    font-size: 0.8rem;
-    color: var(--muted);
+    font-size: 0.85rem;
+    color: var(--text);
+    /* aumentado contraste: era --muted (#94a3b8), agora --text (#e2e8f0) */
+    font-weight: 500;
 }
 
 /* ── Footer ── */
